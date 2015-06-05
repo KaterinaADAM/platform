@@ -1,5 +1,10 @@
 package org.exoplatform.platform.gadget.services.LoginHistory;
 
+/**
+ * This class maintain the logins of a user
+ * @author Kate Adam
+ *
+ */
 public class LoginHistoryBean {
 	private String userId;
 	private String userName;
