@@ -1,5 +1,9 @@
 package org.exoplatform.platform.gadget.services.LoginHistory;
-
+/**
+ * This class stores the logins of the user
+ * @author Kate Adam
+ *
+ */
 public class LoginCounterBean {
 	private long loginDate;
 	private long loginCount;
