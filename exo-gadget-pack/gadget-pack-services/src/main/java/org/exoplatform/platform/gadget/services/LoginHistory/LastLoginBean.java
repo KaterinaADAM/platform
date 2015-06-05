@@ -1,5 +1,12 @@
 package org.exoplatform.platform.gadget.services.LoginHistory;
 
+/**
+ * A class to maintain the last login of the user in order to 
+ * create statistics
+ * @author Author name
+ *
+ */
+
 public class LastLoginBean {
 	private String userId;
 	private String userName;
