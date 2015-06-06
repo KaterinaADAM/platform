@@ -23,8 +23,7 @@ import java.util.List;
  */
 public class WhoIsOnlineImpl implements WhoIsOnline {
     private static final Log LOG = ExoLogger.getLogger(WhoIsOnlineImpl.class);
-    private static final int MAX_USER = 17;
-    private static final int INDEX_USER = 18;
+
 
     public List<User> getFriends(String userId) {
         List<User> userOnLineList = new ArrayList<User>();
@@ -36,9 +35,7 @@ public class WhoIsOnlineImpl implements WhoIsOnline {
             UserStateService userStateService = (UserStateService) container.getComponentInstanceOfType(UserStateService.class);
             List<UserStateModel> users = userStateService.online();             
             Collections.reverse(users);
-            if (users.size() > MAX_USER) {
-                users = users.subList(0, INDEX_USER);
-            }
+           
 
             User userOnLine = null;
             

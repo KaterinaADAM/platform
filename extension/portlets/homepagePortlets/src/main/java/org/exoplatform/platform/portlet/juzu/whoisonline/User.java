@@ -7,11 +7,11 @@ package org.exoplatform.platform.portlet.juzu.whoisonline;
 public class User {
 
   /** . */
-
+  
     private String position = "";
     private String fullName = "";
     private String id;
-    private String profileUrl;
+    private String profileUrl; //this is a test comment
     private String activity = "";
     private String userName = "";
   /** . */
