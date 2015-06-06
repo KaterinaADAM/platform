@@ -18,31 +18,54 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * WhoIsOnlineImpl
+ * This class implements the class WhoIsOnline. 
+ * Implementation of the method getFriends. 
+ * It gets userId and returns a list of users.
  * @author <a href="rtouzi@exoplatform.com">rtouzi</a>
  * @date 07/12/12
  */
 public class WhoIsOnlineImpl implements WhoIsOnline {
-    private static final Log LOG = ExoLogger.getLogger(WhoIsOnlineImpl.class);
+    
+  private static final Log LOG = ExoLogger.getLogger(WhoIsOnlineImpl.class);
 
-
+  /**
+   *It gets the user id and returns a list of objects user
+   */
     public List<User> getFriends(String userId) {
-        List<User> userOnLineList = new ArrayList<User>();
-        if (userId == null) return userOnLineList;
+     
+      /**list of users*/ 
+      List<User> userOnLineList = new ArrayList<User>();
+       
+      if (userId == null) return userOnLineList;
         
         try {
+         
             ExoContainer container = ExoContainerContext.getCurrentContainer();
             IdentityManager identityManager = (IdentityManager) container.getComponentInstanceOfType(IdentityManager.class);
             UserStateService userStateService = (UserStateService) container.getComponentInstanceOfType(UserStateService.class);
+            
+            /**A list UserStateModel where this class administrates 
+              *the characteristics of the connection of the user
+              *Method online initialize the objects of UserStateModel
+              */ 
             List<UserStateModel> users = userStateService.online();             
             Collections.reverse(users);
            
 
             User userOnLine = null;
             
+           /**
+            * Áccess the UserStateModel objects and gives the characteristics of
+            * the connection, UserId, lastActivity , status.
+            */
             for (UserStateModel userModel : users) {
+              
                 String user = userModel.getUserId();
                 String superUserName = System.getProperty("exo.super.user");
+               
                 if (user.equals(userId) || user.equals(superUserName)) continue;
+               
                 userOnLine = new User(user);
                 Identity userIdentity = identityManager.getOrCreateIdentity(OrganizationIdentityProvider.NAME, user,false);
                 Profile userProfile = userIdentity.getProfile();
