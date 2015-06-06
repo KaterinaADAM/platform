@@ -27,20 +27,19 @@ import java.util.List;
  */
 public class WhoIsOnlineImpl implements WhoIsOnline {
     
-  private static final Log LOG = ExoLogger.getLogger(WhoIsOnlineImpl.class);
+    private static final Log LOG = ExoLogger.getLogger(WhoIsOnlineImpl.class);
 
-  /**
-   *It gets the user id and returns a list of objects user
-   */
+    /**
+     *It gets the user id and returns a list of objects user
+     */
     public List<User> getFriends(String userId) {
-     
-      /**list of users*/ 
-      List<User> userOnLineList = new ArrayList<User>();
+      
+        /**list of users*/ 
+        List<User> userOnLineList = new ArrayList<User>();
        
-      if (userId == null) return userOnLineList;
+        if (userId == null) return userOnLineList;
         
         try {
-         
             ExoContainer container = ExoContainerContext.getCurrentContainer();
             IdentityManager identityManager = (IdentityManager) container.getComponentInstanceOfType(IdentityManager.class);
             UserStateService userStateService = (UserStateService) container.getComponentInstanceOfType(UserStateService.class);
@@ -63,7 +62,7 @@ public class WhoIsOnlineImpl implements WhoIsOnline {
               
                 String user = userModel.getUserId();
                 String superUserName = System.getProperty("exo.super.user");
-               
+             
                 if (user.equals(userId) || user.equals(superUserName)) continue;
                
                 userOnLine = new User(user);
@@ -71,8 +70,7 @@ public class WhoIsOnlineImpl implements WhoIsOnline {
                 Profile userProfile = userIdentity.getProfile();
                 userOnLine.setId(userProfile.getId());
                 userOnLine.setProfileUrl(LinkProvider.getUserProfileUri(userIdentity.getRemoteId()));
-                userOnLine.setAvatar(userProfile.getAvatarImageSource() != null ? userProfile.getAvatarImageSource() : LinkProvider.PROFILE_DEFAULT_AVATAR_URL);
-                userOnLineList.add(userOnLine);
+                userOnLine.setAvatar(userProfile.getAvatarImageSource() != null ? userProfile.getAvatarImageSource() : LinkProvider.PROFILE_DEFAULT_AVATAR_URL);               userOnLineList.add(userOnLine);
             }
             return userOnLineList;
 
